@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 // import App from './App';
 // import Items from './Items';
-import PostPage from './PostPage';
+import PostPage from './components/PostPage';
 
 ReactDOM.render(<PostPage />, document.getElementById('root'));
 
