@@ -1,3 +1,29 @@
 .PostPage {
-    background-image: url(./images/Scattered-Forcefields.svg);
+    text-align: center;
+  }
+
+h1 {
+    /* font-family: 'Lemonada', cursive; */
+    font-family: 'Merriweather', serif;
 }
+
+.PostPage-header {
+    background-image: url(./images/Pattern-Randomized.svg);
+    min-height: 100vh;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    margin-top: 0px;
+}
+
+.post-wrap {
+    min-height: 100vh;
+    width: 80%;
+    background-color: rgba(0, 0, 0, 0.87);
+    opacity: 0.6;
+    display: inline-block;
+    margin-top: 20px;
+    padding: 35px;
+    color: #ffffff;
+    margin-bottom: 80px;
+}
+
