@@ -2,37 +2,47 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1{
+  color: #ffffff;
+  font-family: cursive;
+  font-weight: bold;
+  margin: 0px;
 }
 
 .App-header {
-  background-color: #282c34;
+  background-image: url('./images/Explorer\ Enjoying\ Night\ View.svg');
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-top: 0px;
 }
 
-.App-link {
-  color: #61dafb;
+.cover-btn{
+  margin-top: 20px;
+  color: aliceblue;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.cover-btn .MuiButton-outlined {
+  border: 1.5px solid #ffffff;
+}
+
+.cover-btn .MuiButton-root {
+  color: #a41dda;
+  font-weight: bold;
+  font-family: cursive;
+}
+
+div.wrap-frame {
+  margin: 50px;
+  background-color: rgba(0, 0, 0, 0.87);
+  opacity: 0.6;
+  display: inline-block;
+  margin-top: 200px;
+  padding: 50px;
+  border-radius: 20px;
+}
+
+a .post-btn {
+  text-decoration: none;
 }
