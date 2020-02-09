@@ -15,7 +15,7 @@ h1 {
   }
 
 .Items-header {
-    background-image: url('./images/Scattered-Forcefields.svg');
+    background-image: url('../images/Scattered-Forcefields.svg');
     min-height: 100vh;
     background-size: cover; 
     background-position: center;
@@ -36,20 +36,23 @@ h1 {
 .card-wrap {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
   .card {
     background-color: deepskyblue;
     box-shadow: 0 6px 10px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: 198px;
-    max-width: 200px;
+    width:  250px;
+    max-width: 250px;    
     height: 150px;
-    margin-left: 60px;
     border-radius: 15px;
-    margin-bottom: 60px;
-    margin-top: 60px;
+    /* margin-left: 60px; */
+    /* margin-top: 60px; */
+    /* margin-bottom: 60px; */
   }
+
+  
 
   .card .color-bar {
     width: 100%;
@@ -67,3 +70,24 @@ h1 {
   }
   
   
+  
+  .Items a {
+    text-decoration: none !important;
+
+  }
+
+  .title{
+    word-wrap: break-word;
+    white-space: pre;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    color: #000;
+  }
+
+  .title, .date{
+    color: #000;
+  }
+
+  .title::first-letter{
+    text-transform: capitalize;
+  }

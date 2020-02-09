@@ -1,21 +1,34 @@
 import React from 'react';
 import './App.css';
-import Button from '@material-ui/core/Button';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Home from './Home';
+import PostList from './PostList';
+import PostPage from './PostPage';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className="wrap-frame">
-          <h1>Hi, I'm Anjana.</h1>
-          <div className="cover-btn">
-            <Button variant="outlined">My Posts</Button>
-          </div>
-        </div>
+    <Router>
 
-        
-      </header>
-    </div>
+      <div >
+        <Switch>
+          <Route path={`/post/:postId`}>
+            <PostPage />
+          </Route>
+          <Route path="/posts">
+            <PostList />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

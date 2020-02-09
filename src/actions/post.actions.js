@@ -9,22 +9,22 @@ export const PostActionTypes = {
 };
 
 
-const postsLoaded = posts = ({
+const postsLoaded = posts => ({
     type: PostActionTypes.POSTS_LOADED,
     payload: posts
 });
 
-const postAdded = post = ({
+const postAdded = post => ({
     type: PostActionTypes.ADD_POST,
     payload: post
 });
 
-const postUpdated = post = ({
+const postUpdated = post => ({
     type: PostActionTypes.UPDATE_POST,
     payload: post
 });
 
-const postDeleted = post = ({
+const postDeleted = post => ({
     type: PostActionTypes.DELETE_POST,
     payload: post
 });
@@ -35,8 +35,9 @@ export const loadPostsAsync = () => {
         try {
             // get posts
             const posts = await getPosts();
+            console.log('loaded posts', posts);
             // dispatch
-            dispatch(postsLoaded(posts));
+            dispatch(postsLoaded(posts.data));
         } catch (err) {
             // display err
         }
@@ -49,7 +50,7 @@ export const addPostAsync = post => {
             // add post
             const addedPost = await createPost(post);
             // dispatch
-            dispatch(postAdded(addedPost));
+            dispatch(postAdded(addedPost.data));
         } catch (err) {
             // display err   
         }
@@ -62,7 +63,7 @@ export const updatePostAsync = post => {
             // update post
             const updatedPost = await updatedPost(post);
             // dispatch
-            dispatch(postUpdated(updatedPost));
+            dispatch(postUpdated(updatedPost.data));
         } catch (err) {
             // display err
         }
@@ -75,7 +76,7 @@ export const deletePostAsync = postId => {
             // delete post
             const deletedPostId = await deletedPostId(postId);
             // dispatch
-            dispatch(postDeleted(deletedPostId));
+            dispatch(postDeleted(deletedPostId.data));
         } catch (err) {
             // display err
         }

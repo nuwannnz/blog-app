@@ -8,7 +8,7 @@ h1 {
 }
 
 .PostPage-header {
-    background-image: url(./images/Pattern-Randomized.svg);
+    background-image: url(../images/Pattern-Randomized.svg);
     min-height: 100vh;
     background-size: cover; 
     background-repeat: no-repeat;
