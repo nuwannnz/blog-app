@@ -1,35 +1,76 @@
 import React from 'react';
 import './PostPage.css';
+import { useParams, withRouter } from 'react-router-dom';
+import { connect } from "react-redux";
+import { loadPostsAsync } from '../actions/post.actions';
+import moment from 'moment';
 
-function PostPage() {
-  return (
-    <div className="PostPage">
-      <header className="PostPage-header">
-          <h1>Title of the post</h1>
-        <div className="post-wrap">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean faucibus eget leo ac condimentum. Mauris faucibus sapien et nisl condimentum imperdiet. Proin sapien leo, fringilla id iaculis non, rutrum a metus. Fusce faucibus odio sit amet sapien rutrum, vitae finibus sapien aliquet. Praesent tincidunt vulputate facilisis. Proin sit amet suscipit ligula. Nullam varius pellentesque urna, tempus egestas leo faucibus ac. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at diam faucibus, vehicula ex quis, varius mauris. Nullam maximus velit nec cursus elementum. Nulla lobortis mauris et pulvinar pretium. Vestibulum malesuada et dui non faucibus. Cras dignissim erat tellus, ac sagittis turpis lobortis eget. Nullam laoreet tempus dui a suscipit. Phasellus bibendum, turpis sit amet tempus iaculis, dolor dui cursus mi, quis mollis odio erat vitae purus. Cras volutpat sodales sapien et blandit.
+class PostPage extends React.Component {
 
-Nam tempor metus ac sem elementum interdum vel non nisi. Aenean congue ante quis egestas maximus. Integer semper dui ac lectus mattis ullamcorper. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras posuere lectus mattis vulputate auctor. Donec porta faucibus turpis, lacinia rhoncus risus porttitor ut. Cras vel porta ex, vitae euismod ipsum. Nulla sit amet turpis ultricies, malesuada enim vel, fringilla leo. Vestibulum quis lectus ut elit posuere imperdiet eleifend pretium velit. Pellentesque eu augue a sapien venenatis porttitor ac non enim. Cras convallis vehicula ipsum imperdiet vulputate. Nulla orci urna, posuere quis dictum vel, tristique et nulla.
+  constructor(props) {
+    super(props);
+    this.state = {
 
-Morbi molestie sagittis sapien tristique aliquam. Nullam at efficitur magna, vitae auctor turpis. Praesent eget turpis eu purus luctus iaculis eu accumsan ipsum. Suspendisse in posuere diam. In volutpat enim in sollicitudin tristique. Vestibulum enim nibh, pellentesque et dui ut, tempor venenatis enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum nisi sit amet pharetra condimentum. Donec efficitur pharetra libero, nec aliquam mauris ultricies nec. In vel ante vitae quam aliquet fringilla. Donec neque nunc, iaculis et auctor sit amet, dignissim rhoncus nisi. Quisque porttitor, enim vel gravida rutrum, lectus mi imperdiet ipsum, at mattis sem nibh quis nulla.</p>
-        
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean faucibus eget leo ac condimentum. Mauris faucibus sapien et nisl condimentum imperdiet. Proin sapien leo, fringilla id iaculis non, rutrum a metus. Fusce faucibus odio sit amet sapien rutrum, vitae finibus sapien aliquet. Praesent tincidunt vulputate facilisis. Proin sit amet suscipit ligula. Nullam varius pellentesque urna, tempus egestas leo faucibus ac. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at diam faucibus, vehicula ex quis, varius mauris. Nullam maximus velit nec cursus elementum. Nulla lobortis mauris et pulvinar pretium. Vestibulum malesuada et dui non faucibus. Cras dignissim erat tellus, ac sagittis turpis lobortis eget. Nullam laoreet tempus dui a suscipit. Phasellus bibendum, turpis sit amet tempus iaculis, dolor dui cursus mi, quis mollis odio erat vitae purus. Cras volutpat sodales sapien et blandit.
+      currentPostId: -1,
+      currentPost: null
+    }
+  }
 
-Nam tempor metus ac sem elementum interdum vel non nisi. Aenean congue ante quis egestas maximus. Integer semper dui ac lectus mattis ullamcorper. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras posuere lectus mattis vulputate auctor. Donec porta faucibus turpis, lacinia rhoncus risus porttitor ut. Cras vel porta ex, vitae euismod ipsum. Nulla sit amet turpis ultricies, malesuada enim vel, fringilla leo. Vestibulum quis lectus ut elit posuere imperdiet eleifend pretium velit. Pellentesque eu augue a sapien venenatis porttitor ac non enim. Cras convallis vehicula ipsum imperdiet vulputate. Nulla orci urna, posuere quis dictum vel, tristique et nulla.
+  componentDidMount() {
+    const postId = this.props.match.params.postId;
+    console.log('component mounted', this.props);
+    this.setState({
+      currentPostId: postId
+    });
+  }
 
-Morbi molestie sagittis sapien tristique aliquam. Nullam at efficitur magna, vitae auctor turpis. Praesent eget turpis eu purus luctus iaculis eu accumsan ipsum. Suspendisse in posuere diam. In volutpat enim in sollicitudin tristique. Vestibulum enim nibh, pellentesque et dui ut, tempor venenatis enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum nisi sit amet pharetra condimentum. Donec efficitur pharetra libero, nec aliquam mauris ultricies nec. In vel ante vitae quam aliquet fringilla. Donec neque nunc, iaculis et auctor sit amet, dignissim rhoncus nisi. Quisque porttitor, enim vel gravida rutrum, lectus mi imperdiet ipsum, at mattis sem nibh quis nulla.</p>
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      currentPost: nextProps.posts.find(p => p.postId === this.state.currentPostId)
+    });
+  }
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean faucibus eget leo ac condimentum. Mauris faucibus sapien et nisl condimentum imperdiet. Proin sapien leo, fringilla id iaculis non, rutrum a metus. Fusce faucibus odio sit amet sapien rutrum, vitae finibus sapien aliquet. Praesent tincidunt vulputate facilisis. Proin sit amet suscipit ligula. Nullam varius pellentesque urna, tempus egestas leo faucibus ac. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at diam faucibus, vehicula ex quis, varius mauris. Nullam maximus velit nec cursus elementum. Nulla lobortis mauris et pulvinar pretium. Vestibulum malesuada et dui non faucibus. Cras dignissim erat tellus, ac sagittis turpis lobortis eget. Nullam laoreet tempus dui a suscipit. Phasellus bibendum, turpis sit amet tempus iaculis, dolor dui cursus mi, quis mollis odio erat vitae purus. Cras volutpat sodales sapien et blandit.
+  getCurrentPost() {
+    return (
+      <div>
 
-Nam tempor metus ac sem elementum interdum vel non nisi. Aenean congue ante quis egestas maximus. Integer semper dui ac lectus mattis ullamcorper. In hac habitasse platea dictumst. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras posuere lectus mattis vulputate auctor. Donec porta faucibus turpis, lacinia rhoncus risus porttitor ut. Cras vel porta ex, vitae euismod ipsum. Nulla sit amet turpis ultricies, malesuada enim vel, fringilla leo. Vestibulum quis lectus ut elit posuere imperdiet eleifend pretium velit. Pellentesque eu augue a sapien venenatis porttitor ac non enim. Cras convallis vehicula ipsum imperdiet vulputate. Nulla orci urna, posuere quis dictum vel, tristique et nulla.
-
-Morbi molestie sagittis sapien tristique aliquam. Nullam at efficitur magna, vitae auctor turpis. Praesent eget turpis eu purus luctus iaculis eu accumsan ipsum. Suspendisse in posuere diam. In volutpat enim in sollicitudin tristique. Vestibulum enim nibh, pellentesque et dui ut, tempor venenatis enim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi condimentum nisi sit amet pharetra condimentum. Donec efficitur pharetra libero, nec aliquam mauris ultricies nec. In vel ante vitae quam aliquet fringilla. Donec neque nunc, iaculis et auctor sit amet, dignissim rhoncus nisi. Quisque porttitor, enim vel gravida rutrum, lectus mi imperdiet ipsum, at mattis sem nibh quis nulla.</p>
-
+        <div className="PostPage-header">
+          <h1 >{this.state.currentPost.title}</h1>
+          <div className="info">
+            <span>Username</span>
+            <span className="dot" ><i style={{ fontSize: '10px' }} className="fas fa-circle"></i></span>
+            <span title={moment(this.state.currentPost.created_on).format("DD/MM/YYYY")}>{moment(this.state.currentPost.created_on).format("MMM d")}</span>
+          </div>
         </div>
-          
-      </header>
-    </div>
-  );
+        <div className="post-wrap">
+          <p style={{ textAlign: 'left' }}>{this.state.currentPost.content}</p>
+        </div>
+      </div>
+
+    );
+  }
+  render() {
+
+    return (
+      <div className="PostPage">
+
+        {this.state.currentPost !== null ? this.getCurrentPost() : <p>Loading</p>}
+
+      </div>
+    );
+  }
 }
 
-export default PostPage;
+const mapStateToProps = state => ({
+  posts: state.posts.postList
+});
+
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  fetchData: dispatch(loadPostsAsync())
+})
+
+export default withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PostPage));

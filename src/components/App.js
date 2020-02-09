@@ -17,7 +17,7 @@ function App() {
 
       <div >
         <Switch>
-          <Route path={`/post/:postId`}>
+          <Route path={`/post/:postId`} >
             <PostPage />
           </Route>
           <Route path="/posts">
