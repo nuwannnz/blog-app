@@ -28,15 +28,17 @@ h1{
 }
 
 .cover-btn .MuiButton-root {
-  color: #a41dda;
+  color: #e298ff;
   font-weight: bold;
   font-family: cursive;
 }
 
 div.wrap-frame {
   margin: 50px;
-  background-color: rgba(0, 0, 0, 0.87);
-  opacity: 0.6;
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  /* opacity: 0.6; */
   display: inline-block;
   margin-top: 200px;
   padding: 50px;

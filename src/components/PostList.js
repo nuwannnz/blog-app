@@ -4,6 +4,7 @@ import './PostList.css';
 import { loadPostsAsync } from '../actions/post.actions';
 import { Link } from 'react-router-dom';
 import moment from "moment";
+import { Spinner } from './Spinner';
 
 
 class PostList extends React.Component {
@@ -50,6 +51,15 @@ class PostList extends React.Component {
                                 </div>
                             </Link>
                         ))}
+
+                        {
+                            this.state.posts.length === 0 ?
+                                (
+                                    <div className="wrap-frame">
+                                        <Spinner />
+                                    </div>
+                                ) : null
+                        }
 
                     </div>
                 </header>
